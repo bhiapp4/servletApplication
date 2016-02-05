@@ -1,0 +1,13 @@
+<!-- elements and attributes -->
+<books>
+	<book id="1">
+		<name>How to program</name>
+		<author>Mike</author>
+		<isbn>123</isbn>
+	</book>	
+	<book id="2">
+		<name>Head First Java</name>
+		<author>Paul</author>
+		<isbn/>
+	</book>	
+</books>
