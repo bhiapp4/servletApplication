@@ -25,6 +25,9 @@ public class GoodByeServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String email = getServletContext().getInitParameter("email");
+		getServletContext().setInitParameter("test1", "test1Val");
+		System.out.println(email);
 		PrintWriter out = resp.getWriter();
 		out.println("Good Bye");
 	}
