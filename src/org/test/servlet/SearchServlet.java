@@ -20,7 +20,15 @@ public class SearchServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		CustomerDao custDao = new CustomerDao();
-		List<Customer>customers = custDao.fetchCustomersByCity(req.getParameter("city"));
+		String action = req.getParameter("action");
+		List<Customer>customers = null;
+		if (action.equals("SearchByCity")){
+			customers = custDao.fetchCustomersByCity(req.getParameter("cityorstate"));
+		}
+		else{
+			customers = custDao.fetchCustomersByState(req.getParameter("cityorstate"));
+		}
+		//List<Customer>customers = custDao.fetchCustomersByCity(req.getParameter("city"));
 		//you end up writing html in java
 		StringBuffer sb = new StringBuffer("<table border=1>");
 		sb.append("<tr><td>CustomerId</td><td>Name</td><td>City</td><td>State</td><td>Country</td></tr>");

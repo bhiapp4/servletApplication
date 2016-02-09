@@ -72,6 +72,33 @@ public class CustomerDao {
 	}
 	
 	
+	public List<Customer> fetchCustomersByState(String state) {
+		List<Customer>customers = new ArrayList<>();
+		try {
+			Connection conn = getMeAConnection();
+			String query = "select * from customer where state = ?";
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, state);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()){
+				Customer cust = new Customer();
+				cust.setName(rs.getString("name"));
+				cust.setCity(rs.getString("city"));
+				cust.setCustomerId(rs.getInt("customerId"));
+				cust.setState(rs.getString("state"));
+				cust.setCountry(rs.getString("country"));
+				customers.add(cust);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		
+		return customers;
+
+	}
 
 
 }

@@ -7,6 +7,20 @@
   	<param-value>appi.bh@gmail.com</param-value>
   </context-param>
   
+  <filter>
+  	<filter-name>auditing</filter-name>
+  	<filter-class>org.servlet.filter.RequestAuditingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>auditing</filter-name>
+  	<url-pattern>/hello</url-pattern>
+  	<!--  <url-pattern>/*</url-pattern>-->  	
+  </filter-mapping>
+  
+  <listener>
+  	<listener-class>org.servlet.listeners.HttpSessionMonitoringListener</listener-class>
+  </listener>
+  
   <servlet>
   	<servlet-name>hello</servlet-name>
   	<servlet-class>org.test.servlet.HelloWorld</servlet-class>
@@ -28,6 +42,11 @@
   </servlet>
 
   <servlet>
+  	<servlet-name>logoutserv</servlet-name>
+  	<servlet-class>org.test.servlet.LogoutServlet</servlet-class>
+  </servlet>
+
+  <servlet>
   	<servlet-name>register</servlet-name>
   	<servlet-class>org.test.servlet.RegistrationServlet</servlet-class>
   </servlet>
@@ -35,6 +54,32 @@
   	<servlet-name>search</servlet-name>
   	<servlet-class>org.test.servlet.SearchServlet</servlet-class>
   </servlet>
+  
+  <servlet>
+  	<servlet-name>servlet1</servlet-name>
+  	<servlet-class>org.session.servlet.hidden.Servlet1</servlet-class>
+  </servlet>
+  
+   <servlet-mapping>
+  	<servlet-name>servlet1</servlet-name>
+  	<url-pattern>/servlet1</url-pattern>
+  </servlet-mapping>
+ 
+  <servlet>
+  	<servlet-name>servlet2</servlet-name>
+  	<servlet-class>org.session.servlet.hidden.Servlet2</servlet-class>
+  </servlet>
+  
+   <servlet-mapping>
+  	<servlet-name>servlet2</servlet-name>
+  	<url-pattern>/servlet2</url-pattern>
+  </servlet-mapping>
+  
+   <servlet-mapping>
+  	<servlet-name>logoutserv</servlet-name>
+  	<url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  
   <servlet-mapping>
   	<servlet-name>search</servlet-name>
   	<url-pattern>/search</url-pattern>
@@ -64,4 +109,7 @@
   	<welcome-file>login.html</welcome-file>
   </welcome-file-list>
   
+  <session-config>
+  	<session-timeout>30</session-timeout>
+  </session-config>
 </web-app>
