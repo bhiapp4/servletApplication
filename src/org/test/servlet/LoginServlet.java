@@ -18,17 +18,18 @@ public class LoginServlet extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/html");
 		System.out.println(req.getParameter("userName"));
 		System.out.println(req.getParameter("password"));	
 		PrintWriter out = resp.getWriter();
-		out.println("received " +req.getParameter("userName") + " password " + req.getParameter("password"));
+		//out.println("received " +req.getParameter("userName") + " password " + req.getParameter("password"));
 		
 		if ("bh".equals(req.getParameter("password"))){
 			req.getRequestDispatcher("register.html").forward(req, resp);
 		}
 		else{
 			out.println("Please check your user name and password");
-			//req.getRequestDispatcher("login.html").include(req, resp);			
+			req.getRequestDispatcher("login.html").include(req, resp);			
 		}
 	}
 }
